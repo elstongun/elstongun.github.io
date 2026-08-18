@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import { PROJECTS, SITE_DESCRIPTION, SITE_TITLE, SOCIAL } from '../consts';
+import { PROJECTS, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -19,19 +19,6 @@ const posts = (await getCollection('blog'))
 	<body>
 		<Header />
 		<main>
-			<p class="lede">Hi, I'm Joshua.</p>
-			<h1>Building on Ethereum, writing things down.</h1>
-			<p>
-				This is a personal site and blog. I work on trading infrastructure and smart contracts,
-				mostly around <a href="https://aori.io">Aori</a>.
-			</p>
-			<p class="links">
-				<a href={SOCIAL.github}>GitHub</a>
-				<a href={SOCIAL.x}>X</a>
-				<a href="/blog">Blog</a>
-				<a href="/about">About</a>
-			</p>
-
 			<h2>Recent posts</h2>
 			<ul class="post-list">
 				{
@@ -67,23 +54,12 @@ const posts = (await getCollection('blog'))
 </html>
 
 <style>
-	.lede {
-		margin-bottom: 0.25rem;
-		color: rgb(var(--gray));
-		font-size: 1.1rem;
-	}
-	h1 {
-		font-size: 2.2em;
-		margin-bottom: 0.6em;
-	}
 	h2 {
 		margin-top: 2em;
 		font-size: 1.4em;
 	}
-	.links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
+	h2:first-child {
+		margin-top: 0;
 	}
 	.post-list,
 	.project-list {
@@ -106,8 +82,7 @@ const posts = (await getCollection('blog'))
 		align-items: baseline;
 	}
 	.post-title {
-		font-weight: 700;
-		color: rgb(var(--black));
+		color: var(--fg);
 	}
 	.post-date {
 		color: rgb(var(--gray));
@@ -119,8 +94,5 @@ const posts = (await getCollection('blog'))
 		margin: 0.25em 0 0 0;
 		color: rgb(var(--gray));
 		font-size: 0.95em;
-	}
-	.project-list a {
-		font-weight: 700;
 	}
 </style>
