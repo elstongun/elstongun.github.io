@@ -8,6 +8,13 @@ const posts = (await getCollection('blog'))
 ---
 
 <main>
+	<img
+		class="home-image"
+		src="/home-image.jpg"
+		alt="Death on the Pale Horse, Gustave Doré"
+		width="320"
+		height="320"
+	/>
 	<p>
 		Personal site and blog. I previously worked on high frequency trading infrastructure, now I work
 		on making factories smart.
@@ -32,6 +39,14 @@ const posts = (await getCollection('blog'))
 </main>
 
 <style>
+	.home-image {
+		display: block;
+		width: 320px;
+		max-width: 100%;
+		height: auto;
+		margin: 0 0 1.5em 0;
+		border-radius: 0;
+	}
 	h2 {
 		margin-top: 2em;
 		font-size: 1.25em;
