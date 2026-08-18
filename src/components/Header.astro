@@ -1,11 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+import avatar from '../assets/avatar.png';
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/home/">{SITE_TITLE}</a></h2>
+		<a class="brand" href="/home/" aria-label={SITE_TITLE}>
+			<Image src={avatar} alt={SITE_TITLE} width={40} height={40} />
+		</a>
 		<div class="internal-links">
 			<HeaderLink href="/home/">Home</HeaderLink>
 			<HeaderLink href="/blog/">Blog</HeaderLink>
@@ -19,19 +23,23 @@ import HeaderLink from './HeaderLink.astro';
 		background: #000;
 		border-bottom: 1px solid #222;
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
 	nav {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
+	}
+	.brand {
+		display: flex;
+		padding: 0.65em 0.5em;
+		line-height: 0;
+		border-bottom: 4px solid transparent;
+	}
+	.brand img {
+		width: 40px;
+		height: 40px;
+		object-fit: cover;
+		border-radius: 0;
+		border: 1px solid #fff;
 	}
 	nav a {
 		padding: 1em 0.5em;
