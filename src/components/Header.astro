@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import avatar from '../assets/avatar.png';
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
@@ -8,7 +6,7 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<a class="brand" href="/home/" aria-label={SITE_TITLE}>
-			<Image src={avatar} alt={SITE_TITLE} width={40} height={40} />
+			<img src="/avatar.png" alt={SITE_TITLE} width="40" height="40" />
 		</a>
 		<div class="internal-links">
 			<HeaderLink href="/home/">Home</HeaderLink>
