@@ -5,8 +5,16 @@ type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+const normalized = pathname.endsWith('/') ? pathname : `${pathname}/`;
+const hrefValue = String(href ?? '');
+const hrefNormalized = hrefValue.endsWith('/') ? hrefValue : `${hrefValue}/`;
+
+const homePaths = new Set(['/', '/home/', '/index.html/']);
+const isHomeLink = hrefNormalized === '/home/' || hrefNormalized === '/';
+const onHome = homePaths.has(normalized) || normalized === '/index.html/';
+const isActive = isHomeLink
+	? onHome
+	: hrefNormalized === normalized || normalized.startsWith(hrefNormalized);
 ---
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
