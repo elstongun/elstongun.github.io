@@ -25,8 +25,8 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: var(--fg);
-	font-size: 20px;
-	line-height: 1.7;
+	font-size: 15px;
+	line-height: 1.6;
 }
 main {
 	width: 720px;
@@ -117,7 +117,7 @@ hr {
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 14px;
 	}
 	main {
 		padding: 1em;
