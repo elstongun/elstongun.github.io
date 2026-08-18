@@ -1,0 +1,126 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { PROJECTS, SITE_DESCRIPTION, SITE_TITLE, SOCIAL } from '../consts';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 4);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<p class="lede">Hi, I'm Joshua.</p>
+			<h1>Building on Ethereum, writing things down.</h1>
+			<p>
+				This is a personal site and blog. I work on trading infrastructure and smart contracts,
+				mostly around <a href="https://aori.io">Aori</a>.
+			</p>
+			<p class="links">
+				<a href={SOCIAL.github}>GitHub</a>
+				<a href={SOCIAL.x}>X</a>
+				<a href="/blog">Blog</a>
+				<a href="/about">About</a>
+			</p>
+
+			<h2>Recent posts</h2>
+			<ul class="post-list">
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<span class="post-title">{post.data.title}</span>
+								<span class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</span>
+							</a>
+							<p>{post.data.description}</p>
+						</li>
+					))
+				}
+			</ul>
+			<p><a href="/blog">All posts →</a></p>
+
+			<h2>Selected work</h2>
+			<ul class="project-list">
+				{
+					PROJECTS.map((project) => (
+						<li>
+							<a href={project.href}>{project.title}</a>
+							<p>{project.description}</p>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.lede {
+		margin-bottom: 0.25rem;
+		color: rgb(var(--gray));
+		font-size: 1.1rem;
+	}
+	h1 {
+		font-size: 2.2em;
+		margin-bottom: 0.6em;
+	}
+	h2 {
+		margin-top: 2em;
+		font-size: 1.4em;
+	}
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	.post-list,
+	.project-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1em 0;
+	}
+	.post-list li,
+	.project-list li {
+		margin: 0 0 1.25em 0;
+	}
+	.post-list a,
+	.project-list a {
+		text-decoration: none;
+	}
+	.post-list a {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		align-items: baseline;
+	}
+	.post-title {
+		font-weight: 700;
+		color: rgb(var(--black));
+	}
+	.post-date {
+		color: rgb(var(--gray));
+		font-size: 0.9rem;
+		white-space: nowrap;
+	}
+	.post-list p,
+	.project-list p {
+		margin: 0.25em 0 0 0;
+		color: rgb(var(--gray));
+		font-size: 0.95em;
+	}
+	.project-list a {
+		font-weight: 700;
+	}
+</style>
