@@ -1,7 +1,7 @@
 ---
 title: 'P(Exodus)'
 description: 'The AI apocalypse is not annihilation by weaponry. It is jacking in and never leaving.'
-pubDate: 'Sep 6 2026'
+pubDate: 'Sep 10 2026'
 ---
 
 > …She'd come through the door with a wrapped bottle under her arm, not even take her coat off, just go straight over and jack into the [VR Headset], soap [opera] her brains out good for six solid hours. Her eyes would unfocus, and sometimes, if it was a really good episode, she'd drool a little.
